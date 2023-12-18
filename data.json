@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Processor",
+    "type": "CPU",
+    "price": 200,
+    "manufacturer": "Intel",
+    "stock": 50
+  },
+  {
+    "name": "Graphics Card",
+    "type": "GPU",
+    "price": 400,
+    "manufacturer": "NVIDIA",
+    "stock": 30
+  },
+  {
+    "name": "Memory",
+    "type": "RAM",
+    "price": 80,
+    "manufacturer": "Corsair",
+    "stock": 100
+  },
+  {
+    "name": "Storage",
+    "type": "SSD",
+    "price": 120,
+    "manufacturer": "Samsung",
+    "stock": 75
+  },
+  {
+    "name": "Motherboard",
+    "type": "Mainboard",
+    "price": 150,
+    "manufacturer": "ASUS",
+    "stock": 40
+  }
+]

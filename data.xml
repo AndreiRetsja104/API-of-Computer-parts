@@ -1,0 +1,37 @@
+<computerParts>
+  <part>
+    <name>Processor</name>
+    <type>CPU</type>
+    <price>200</price>
+    <manufacturer>Intel</manufacturer>
+    <stock>50</stock>
+  </part>
+  <part>
+    <name>Graphics Card</name>
+    <type>GPU</type>
+    <price>400</price>
+    <manufacturer>NVIDIA</manufacturer>
+    <stock>30</stock>
+  </part>
+  <part>
+    <name>Memory</name>
+    <type>RAM</type>
+    <price>80</price>
+    <manufacturer>Corsair</manufacturer>
+    <stock>100</stock>
+  </part>
+  <part>
+    <name>Storage</name>
+    <type>SSD</type>
+    <price>120</price>
+    <manufacturer>Samsung</manufacturer>
+    <stock>75</stock>
+  </part>
+  <part>
+    <name>Motherboard</name>
+    <type>Mainboard</type>
+    <price>150</price>
+    <manufacturer>ASUS</manufacturer>
+    <stock>40</stock>
+  </part>
+</computerParts>
