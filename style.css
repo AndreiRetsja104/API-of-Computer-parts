@@ -1,6 +1,49 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+#app {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #eee;
+    border-radius: 4px;
+}
+
+input[type="text"] {
+    width: 70%;
+    padding: 8px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 8px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 #computer-parts-info {
@@ -17,4 +60,3 @@ body {
 @media (max-width: 600px) {
     /* Add styles for smaller screens */
 }
-
