@@ -6,9 +6,20 @@
     <link rel="stylesheet" href="style.css">
     <title>Computer Parts Info</title>
 </head>
+
 <body>
-    <div id="computer-parts-info"></div>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="script.js"></script>
+
+    <button id="ajaxButton">Load Additional Data</button>
+
+    <div id="computer-parts-info-json">
+        <!-- This is where the JSON data will be displayed -->
+    </div>
+
+   <div id="computer-parts-info-xml">
+    <!-- This is where the XML data will be displayed -->
+   </div>
+
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
