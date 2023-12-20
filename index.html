@@ -2,24 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="style.css">
-    <title>Computer Parts Info</title>
+    <title>Computer Components API</title>
+	<link rel="stylesheet" href="stylingOfNAvigateBar.css">
 </head>
-
 <body>
-
-    <button id="ajaxButton">Load Additional Data</button>
-
-    <div id="computer-parts-info-json">
-        <!-- This is where the JSON data will be displayed -->
-    </div>
-
-   <div id="computer-parts-info-xml">
-    <!-- This is where the XML data will be displayed -->
-   </div>
-
-  <script src="https://d3js.org/d3.v6.min.js"></script>
-  <script src="script.js"></script>
+    <div class="container1">
+    <nav>
+        <div class= "logo">
+		  <p>Computer Components API</p>
+		</div>
+		<ul>
+		<li><a href="index.html">Main Page</a></li>
+		<li><a href="ComputerCompanentLIst.html">Compputer Companent List</a></li>
+		<li><a href="ChartForXml.html">Chart Bar chart</a></li>
+		<li><a href="#">Explonation Description</a></li>
+		</ul>
+		<div class="container">
+         <form action="" class="search-bar" >
+          <input type="text" id="search-bar" placeholder="Search...">
+          <button onclick="performSearch()"><img src="images/search.png"></button>
+         <div class="container2">
+	   </form>
+    </nav>
+    <section>
+        <p>Welcome to the main page! Use the navigation above to explore other pages.</p>
+    </section>
+	 <script src="scriptIndex.js"></script>
 </body>
+
 </html>

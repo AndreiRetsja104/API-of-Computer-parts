@@ -79,16 +79,50 @@ function displayComputerParts(parts, targetElement) {
 
 function createPartInfo(part) {
     // Create a string containing HTML markup with information about the part
+    const stockInfo = part.stock !== undefined ? `<p>Stock: ${part.stock}</p>` : '';
+    const specificationsInfo = part.specifications
+        ? `<p>Cores: ${part.specifications.cores}</p><p>Clock Speed: ${part.specifications.clockSpeed}</p>`
+        : '';
+
     return `
         <div class="part">
             <h2>${part.name}</h2>
             <p>Type: ${part.type}</p>
             <p>Price: € ${part.price}</p>
             <p>Manufacturer: ${part.manufacturer}</p>
-            <p>Stock: ${part.stock}</p>
+            ${stockInfo}
+            ${specificationsInfo}
         </div>
     `;
 }
+
+function performSearch() {
+    fetchJsonData()
+        .then(data => {
+            const typeInput = document.getElementById('type-input').value.trim().toLowerCase();
+            const manufacturerInput = document.getElementById('manufacturer-input').value.trim().toLowerCase();
+            const priceInput = document.getElementById('price-input').value.trim();
+
+            // Extracting min and max values from the priceInput
+            const [minPrice, maxPrice] = priceInput.split('-').map(val => parseFloat(val.trim()));
+
+            const filteredData = data.filter(part => {
+                const matchType = !typeInput || part.type.toLowerCase().includes(typeInput);
+                const matchManufacturer = !manufacturerInput || part.manufacturer.toLowerCase().includes(manufacturerInput);
+
+                // Check if the price is within the specified range
+                const matchPrice = isNaN(minPrice) || isNaN(maxPrice) ||
+                    (minPrice <= part.price && part.price <= maxPrice);
+
+                return matchType && matchManufacturer && matchPrice;
+            });
+
+            displayComputerParts(filteredData, '#computer-parts-info-json');
+        })
+        .catch(error => console.error('Error performing search:', error));
+}
+
+
 
 function visualizeData(data) {
     // Example: Create a bar chart of stock levels using D3.js
