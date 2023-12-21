@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="script.js"></script>
+    <title>Add Data to JSON</title>
+</head>
+<body>
+     <!-- Div for displaying computer parts information from JSON data -->
+    <div id="computer-parts-info-json"></div>
+
+    <!-- Div for displaying computer parts information from XML data -->
+    <div id="computer-parts-info-xml"></div>
+
+    <!-- Rest of your HTML content -->
+
+
+    <h1>Add Data to JSON</h1>
+
+    <label for="type">Type:</label>
+    <input type="text" id="type" placeholder="CPU" required><br>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Intel Core i5" required><br>
+
+    <label for="manufacturer">Manufacturer:</label>
+    <input type="text" id="manufacturer" placeholder="AMD" required><br>
+
+    <label for="price">Price:</label>
+    <input type="number" id="price" placeholder="705.35" required><br>
+
+    <label for="cores">Number of Cores:</label>
+    <input type="number" id="cores" placeholder="2" required><br>
+
+    <label for="clockSpeed">Clock Speed:</label>
+    <input type="text" id="clockSpeed" placeholder="1.5 GHz" required><br>
+
+    <button onclick="addData()">Add Data</button>
+</body>
+</html>
