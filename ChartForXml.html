@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="stylingOfNAvigateBar.css">
+	<link rel="stylesheet" href="style2.css">
     <title>Computer Parts API</title>
     <!-- Include Chart.js from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -19,7 +19,6 @@
 		<li><a href="index.html">Main Page</a></li>
 		<li><a href="ComputerCompanentLIst.html">Compputer Companent List</a></li>
 		<li><a href="ChartForXml.html">Chart Bar chart</a></li>
-		<li><a href="#">Explonation Description</a></li>
 		</ul>
      </nav>
      <div class="filter-buttons">
@@ -1096,7 +1095,15 @@
                                 text: 'Values'
                             }
                         }
-                    }
+                    },
+					plugins: {
+                       legend: {
+					      color: 'black', 
+                          labels: {
+                              color: 'black'
+		                  }
+                       }
+                    }				
                 }
             });
         }
