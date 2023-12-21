@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="script.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Data to JSON</title>
 </head>
 <body>
-
+    <div id="computer-parts-info-json"></div>
+    
     <h1>Add Data to JSON</h1>
 
     <label for="type">Type:</label>
@@ -28,6 +31,5 @@
     <input type="text" id="clockSpeed" placeholder="1.5 GHz" required><br>
 
     <button onclick="addData()">Add Data</button>
-    <script src="script.js"></script>
 </body>
 </html>
