@@ -52,7 +52,7 @@ function parseXmlData(xmlDoc) {
     return parts;
 }
 
-// Function to display computer parts
+//  Displays computer parts information on the webpage
 function displayComputerParts(parts, targetElement) {
     const computerPartsInfo = document.querySelector(targetElement);
 
@@ -80,7 +80,7 @@ function displayComputerParts(parts, targetElement) {
     }
 }
 
-
+//Creates HTML markup for displaying information about a computer part
 function createPartInfo(part) {
     // Create a string containing HTML markup with information about the part
     const stockInfo = part.stock !== undefined ? `<p>Stock: ${part.stock}</p>` : '';
@@ -104,9 +104,7 @@ function createPartInfo(part) {
 }
 
 
-
-
-
+//Performs a search based on user input and displays filtered results.
 function performSearch() {
     fetchJsonData()
         .then(data => {
@@ -154,7 +152,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         document.querySelector('#computer-parts-info-xml').innerHTML = 'Error fetching XML data. Please try again later.';
     }
 });
-
+// async Fetches data from the external Json API 
 async function fetchJsonData() {
     const response = await fetch(jsonApiEndpoint);
     if (!response.ok) {
@@ -162,7 +160,7 @@ async function fetchJsonData() {
     }
     return response.json();
 }
-
+// async Fetches data from the external XML API 
 async function fetchXmlData() {
     try {
         const response = await fetch(xmlApiEndpoint);
@@ -210,52 +208,8 @@ document.addEventListener('DOMContentLoaded', function() {
     fetchXmlData();
 });
 
+// Function for Add the data connector will added here in the future 
+
+// Function for connector between MySql main fork will added here in the future 
 
 
-
-function addData() {
-    // Get values from the form
-    const type = document.getElementById('type').value;
-    const name = document.getElementById('name').value;
-    const manufacturer = document.getElementById('manufacturer').value;
-    const price = parseFloat(document.getElementById('price').value);
-    const cores = parseInt(document.getElementById('cores').value);
-    const clockSpeed = document.getElementById('clockSpeed').value;
-
-    // Create a new data object
-    const newData = {
-        type: type,
-        name: name,
-        manufacturer: manufacturer,
-        price: price,
-        specifications: {
-            cores: cores,
-            clockSpeed: clockSpeed
-        }
-    };
-
-    // Fetch the existing data from the JSON file
-     fetch('data.json')
-        .then(response => response.json())
-        .then(existingData => {
-            // Add the new data to the existing array
-            existingData.push(newData);
-
-            // Write the updated data back to the JSON file
-            return fetch('data.json', {
-                method: 'PUT', // Use 'PUT' method to update the file
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(existingData)
-            });
-        })
-        .then(response => {
-            if (response.ok) {
-                console.log('Data added successfully!');
-            } else {
-                console.error('Failed to add data:', response.statusText);
-            }
-        })
-        .catch(error => console.error('Error:', error));
-}
