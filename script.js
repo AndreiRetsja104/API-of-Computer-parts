@@ -232,7 +232,7 @@ function addData() {
 
             // Write the updated data back to the JSON file
             return fetch('data.json', {
-                method: 'PUT', // Use 'PUT' method to update the file
+                method: 'GET', // Use 'PUT' method to update the file
                 headers: {
                     'Content-Type': 'application/json'
                 },
