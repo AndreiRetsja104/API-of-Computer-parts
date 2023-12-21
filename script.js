@@ -203,48 +203,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 function addData() {
-    // Get values from the form
-    const type = document.getElementById('type').value;
-    const name = document.getElementById('name').value;
-    const manufacturer = document.getElementById('manufacturer').value;
-    const price = parseFloat(document.getElementById('price').value);
-    const cores = parseInt(document.getElementById('cores').value);
-    const clockSpeed = document.getElementById('clockSpeed').value;
+    const type = document.getElementById('type').value.trim();
+    const name = document.getElementById('name').value.trim();
+    // ... (other fields)
 
-    // Create a new data object
-    const newData = {
-        type: type,
-        name: name,
-        manufacturer: manufacturer,
-        price: price,
-        specifications: {
-            cores: cores,
-            clockSpeed: clockSpeed
-        }
-    };
-
-    // Fetch the existing data from the JSON file
-    fetch('data.json')
-        .then(response => response.json())
-        .then(existingData => {
-            // Add the new data to the existing array
-            existingData.push(newData);
-
-            // Write the updated data back to the JSON file
-            return fetch('data.json', {
-                method: 'GET', // Use 'PUT' method to update the file
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(existingData)
-            });
-        })
+    fetch(`data.json`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
         .then(response => {
-            if (response.ok) {
-                console.log('Data added successfully!');
-            } else {
-                console.error('Failed to add data:', response.statusText);
+            if (!response.ok) {
+                throw new Error(`Failed to fetch data: ${response.status}`);
             }
+            return response.json();
         })
-        .catch(error => console.error('Error:', error));
+        .then(data => {
+            // Modify data here
+            // ...
+            console.log('Data successfully added:', data);
+        })
+        .catch(error => {
+            console.error('Failed to add data:', error);
+        });
 }
