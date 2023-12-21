@@ -171,19 +171,31 @@ async function fetchXmlData() {
 // Function for data visualization using D3.js
 function visualizeData(data) {
     // Example: Create a bar chart of stock levels using D3.js
-    const svg = d3.select('#computer-parts-info')
+    const svg = d3.select('#computer-parts-info-json')
         .append('svg')
         .attr('width', 400)
         .attr('height', 200);
 
-    const stockValues = data.map(part => part.stock);
+    const productCounts = {};
+
+    data.forEach(part => {
+        const type = part.type;
+        if (productCounts[type]) {
+            productCounts[type]++;
+        } else {
+            productCounts[type] = 1;
+        }
+    });
+
+    const productTypes = Object.keys(productCounts);
+    const countValues = Object.values(productCounts);
 
     const xScale = d3.scaleLinear()
-        .domain([0, d3.max(stockValues)])
+        .domain([0, d3.max(countValues)])
         .range([0, 400]);
 
     svg.selectAll('rect')
-        .data(stockValues)
+        .data(countValues)
         .enter()
         .append('rect')
         .attr('x', 10)
@@ -191,7 +203,18 @@ function visualizeData(data) {
         .attr('width', d => xScale(d))
         .attr('height', 30)
         .attr('fill', 'blue');
+
+    svg.selectAll('text')
+        .data(productTypes)
+        .enter()
+        .append('text')
+        .attr('x', 420)
+        .attr('y', (d, i) => i * 40 + 20)
+        .text(d => `${d}: ${productCounts[d]}`)
+        .attr('alignment-baseline', 'middle')
+        .attr('fill', 'black');
 }
+
 
 // Fetch data on page load
 document.addEventListener('DOMContentLoaded', function() {
