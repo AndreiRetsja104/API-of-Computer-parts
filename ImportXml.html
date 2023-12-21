@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Data to JSON</title>
+</head>
+<body>
+
+    <h1>Add Data to JSON</h1>
+
+    <label for="type">Type:</label>
+    <input type="text" id="type" placeholder="CPU" required><br>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Intel Core i5" required><br>
+
+    <label for="manufacturer">Manufacturer:</label>
+    <input type="text" id="manufacturer" placeholder="AMD" required><br>
+
+    <label for="price">Price:</label>
+    <input type="number" id="price" placeholder="705.35" required><br>
+
+    <label for="cores">Number of Cores:</label>
+    <input type="number" id="cores" placeholder="2" required><br>
+
+    <label for="clockSpeed">Clock Speed:</label>
+    <input type="text" id="clockSpeed" placeholder="1.5 GHz" required><br>
+
+    <button onclick="addData()">Add Data</button>
+
+    <script>
+        function addData() {
+            const type = document.getElementById('type').value;
+            const name = document.getElementById('name').value;
+            const manufacturer = document.getElementById('manufacturer').value;
+            const price = parseFloat(document.getElementById('price').value);
+            const cores = parseInt(document.getElementById('cores').value);
+            const clockSpeed = document.getElementById('clockSpeed').value;
+
+            const newData = {
+                "type": type,
+                "name": name,
+                "manufacturer": manufacturer,
+                "price": price,
+                "specifications": {
+                    "cores": cores,
+                    "clockSpeed": clockSpeed
+                }
+            };
+
+            // Assuming you have the existing data from data.json
+            // Fetch the existing data
+            fetch('data.json')
+                .then(response => response.json())
+                .then(existingData => {
+                    // Add the new data to the existing data array
+                    existingData.push(newData);
+
+                    // Save the updated data back to the JSON file
+                    return fetch('data.json', {
+                        method: 'PUT', // You might need to use 'POST' or 'PATCH' depending on your server setup
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(existingData)
+                    });
+                })
+                .then(response => response.json())
+                .then(updatedData => {
+                    console.log('Data added successfully:', updatedData);
+                    // Optionally, you can display a success message or redirect the user
+                })
+                .catch(error => {
+                    console.error('Error adding data:', error);
+                    // Display an error message to the user
+                });
+        }
+    </script>
+
+</body>
+</html>
