@@ -2,6 +2,7 @@
 const jsonApiEndpoint = 'https://raw.githubusercontent.com/AndreiRetsja104/API-of-Computer-parts/main/data.json';
 const xmlApiEndpoint = 'https://raw.githubusercontent.com/AndreiRetsja104/API-of-Computer-parts/main/data.xml';
 
+
 // Function to fetch data from the external JSON API
 function fetchJsonData() {
     fetch(jsonApiEndpoint)
@@ -12,6 +13,7 @@ function fetchJsonData() {
         })
         .catch(error => console.error('Error fetching JSON data:', error));
 }
+
 
 // Function to fetch data from the external XML API
 function fetchXmlData() {
@@ -30,6 +32,7 @@ function fetchXmlData() {
             throw error; // Re-throw the error to keep it consistent with the promise chain
         });
 }
+
 
 // Function to parse XML data
 function parseXmlData(xmlDoc) {
@@ -50,6 +53,8 @@ function parseXmlData(xmlDoc) {
     return parts;
 }
 
+
+//  Displays computer parts information on the webpage
 function displayComputerParts(parts, targetElement) {
     const computerPartsInfo = document.querySelector(targetElement);
 
@@ -78,6 +83,8 @@ function displayComputerParts(parts, targetElement) {
     }
 }
 
+
+//Creates HTML markup for displaying information about a computer part
 function createPartInfo(part) {
     // Create a string containing HTML markup with information about the part
     const stockInfo = part.stock !== undefined ? `<p>Stock: ${part.stock}</p>` : '';
@@ -96,6 +103,8 @@ function createPartInfo(part) {
     `;
 }
 
+
+//Performs a search based on user input and displays filtered results.
 function performSearch() {
     fetchJsonData()
         .then(data => {
@@ -152,6 +161,8 @@ async function fetchJsonData() {
     return response.json();
 }
 
+
+//  Fetches data from the external XML API 
 async function fetchXmlData() {
     try {
         const response = await fetch(xmlApiEndpoint);
@@ -217,52 +228,13 @@ function visualizeData(data) {
 
 
 // Fetch data on page load
+//Triggers the initial data fetching and visualization
 document.addEventListener('DOMContentLoaded', function() {
     fetchJsonData();
     fetchXmlData();
 });
 
+// Function for Add the data connector will added here in the future 
 
-
-function addData() {
-    const type = document.getElementById('type').value.trim();
-    const name = document.getElementById('name').value.trim();
-    const manufacturer = document.getElementById('manufacturer').value.trim();
-    const price = parseFloat(document.getElementById('price').value.trim());
-    const cores = parseInt(document.getElementById('cores').value.trim());
-    const clockSpeed = document.getElementById('clockSpeed').value.trim();
-
-    const newData = {
-        type: type,
-        name: name,
-        manufacturer: manufacturer,
-        price: price,
-        specifications: {
-            cores: cores,
-            clockSpeed: clockSpeed
-        }
-    };
-
-    fetch('data.json', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newData),
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Failed to add data: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Data successfully added:', data);
-            // You can update your UI or perform additional actions here
-        })
-        .catch(error => {
-            console.error('Failed to add data:', error);
-        });
-}
-
+// Function for connector between MySql main fork will added here in the future 
 
