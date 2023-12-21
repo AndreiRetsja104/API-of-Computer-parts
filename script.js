@@ -201,30 +201,45 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
 function addData() {
     const type = document.getElementById('type').value.trim();
     const name = document.getElementById('name').value.trim();
-    // ... (other fields)
+    const manufacturer = document.getElementById('manufacturer').value.trim();
+    const price = parseFloat(document.getElementById('price').value.trim());
+    const cores = parseInt(document.getElementById('cores').value.trim());
+    const clockSpeed = document.getElementById('clockSpeed').value.trim();
 
-    fetch(`data.json`, {
-        method: 'GET',
+    const newData = {
+        type: type,
+        name: name,
+        manufacturer: manufacturer,
+        price: price,
+        specifications: {
+            cores: cores,
+            clockSpeed: clockSpeed
+        }
+    };
+
+    fetch('data.json', {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
+        body: JSON.stringify(newData),
     })
         .then(response => {
             if (!response.ok) {
-                throw new Error(`Failed to fetch data: ${response.status}`);
+                throw new Error(`Failed to add data: ${response.status}`);
             }
             return response.json();
         })
         .then(data => {
-            // Modify data here
-            // ...
             console.log('Data successfully added:', data);
+            // You can update your UI or perform additional actions here
         })
         .catch(error => {
             console.error('Failed to add data:', error);
         });
 }
+
+
