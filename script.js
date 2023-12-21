@@ -69,6 +69,7 @@ function displayComputerParts(parts, targetElement) {
             computerPartsInfo.innerHTML += partInfo;
         });
     } else if (typeof parts === 'object') {
+		
         // If parts is a single object, display information for that part
         const partInfo = createPartInfo(parts);
         computerPartsInfo.innerHTML = partInfo;
@@ -83,7 +84,6 @@ function createPartInfo(part) {
     const specificationsInfo = part.specifications
         ? `<p>Cores: ${part.specifications.cores}</p><p>Clock Speed: ${part.specifications.clockSpeed}</p>`
         : '';
-
     return `
         <div class="part">
             <h2>${part.name}</h2>
@@ -122,72 +122,6 @@ function performSearch() {
         .catch(error => console.error('Error performing search:', error));
 }
 
-
-
-function visualizeData(data) {
-    // Example: Create a bar chart of stock levels using D3.js
-    const svg = d3.select('#computer-parts-info')
-        .append('svg')
-        .attr('width', 400)
-        .attr('height', 200);
-
-    const stockValues = data.map(part => part.stock);
-
-    const xScale = d3.scaleLinear()
-        .domain([0, d3.max(stockValues)])
-        .range([0, 400]);
-
-    svg.selectAll('rect')
-        .data(stockValues)
-        .enter()
-        .append('rect')
-        .attr('x', 10)
-        .attr('y', (d, i) => i * 40)
-        .attr('width', d => xScale(d))
-        .attr('height', 30)
-        .attr('fill', 'blue');
-}
-
-
-// Function for data visualization using D3.js
-function visualizeData3D(data, targetElement, chartWidth, chartHeight) {
-    // Clear existing chart
-    d3.select(targetElement + ' svg').remove();
-
-    // Example: Create a 3D bar chart of stock levels using D3.js
-    const svg = d3.select(targetElement)
-        .append('svg')
-        .attr('width', chartWidth)
-        .attr('height', chartHeight);
-
-    const stockValues = data.map(part => part.stock);
-
-    const xScale = d3.scaleLinear()
-        .domain([0, d3.max(stockValues)])
-        .range([0, chartWidth]);
-
-    const yScale = d3.scaleBand()
-        .domain(data.map((_, i) => i))
-        .range([0, chartHeight])
-        .padding(0.1);
-
-    const zScale = d3.scaleLinear()
-        .domain([0, d3.max(stockValues)])
-        .range([0, 100]);
-
-    svg.selectAll('rect')
-        .data(stockValues)
-        .enter()
-        .append('rect')
-        .attr('x', 10)
-        .attr('y', (d, i) => yScale(i))
-        .attr('width', d => xScale(d))
-        .attr('height', yScale.bandwidth())
-        .attr('fill', 'blue')
-        .attr('opacity', d => zScale(d) / 100);
-}
-
-
 document.addEventListener('DOMContentLoaded', async function () {
     try {
         // Fetch JSON data
@@ -198,10 +132,12 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // Fetch XML data
         const xmlData = await fetchXmlData();
-        // Display XML data
+        
+		// Display XML data
         displayComputerParts(xmlData, '#computer-parts-info-xml');
     } catch (error) {
-        // Handle errors
+        
+		// Handle errors
         console.error('Error:', error);
         document.querySelector('#computer-parts-info-json').innerHTML = 'Error fetching JSON data. Please try again later.';
         document.querySelector('#computer-parts-info-xml').innerHTML = 'Error fetching XML data. Please try again later.';
@@ -262,3 +198,53 @@ document.addEventListener('DOMContentLoaded', function() {
     fetchJsonData();
     fetchXmlData();
 });
+
+
+
+
+function addData() {
+    // Get values from the form
+    const type = document.getElementById('type').value;
+    const name = document.getElementById('name').value;
+    const manufacturer = document.getElementById('manufacturer').value;
+    const price = parseFloat(document.getElementById('price').value);
+    const cores = parseInt(document.getElementById('cores').value);
+    const clockSpeed = document.getElementById('clockSpeed').value;
+
+    // Create a new data object
+    const newData = {
+        type: type,
+        name: name,
+        manufacturer: manufacturer,
+        price: price,
+        specifications: {
+            cores: cores,
+            clockSpeed: clockSpeed
+        }
+    };
+
+    // Fetch the existing data from the JSON file
+    fetch('data.json')
+        .then(response => response.json())
+        .then(existingData => {
+            // Add the new data to the existing array
+            existingData.push(newData);
+
+            // Write the updated data back to the JSON file
+            return fetch('data.json', {
+                method: 'PUT', // Use 'PUT' method to update the file
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(existingData)
+            });
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log('Data added successfully!');
+            } else {
+                console.error('Failed to add data:', response.statusText);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}

@@ -28,55 +28,6 @@
     <input type="text" id="clockSpeed" placeholder="1.5 GHz" required><br>
 
     <button onclick="addData()">Add Data</button>
-
-    <script>
-        function addData() {
-            const type = document.getElementById('type').value;
-            const name = document.getElementById('name').value;
-            const manufacturer = document.getElementById('manufacturer').value;
-            const price = parseFloat(document.getElementById('price').value);
-            const cores = parseInt(document.getElementById('cores').value);
-            const clockSpeed = document.getElementById('clockSpeed').value;
-
-            const newData = {
-                "type": type,
-                "name": name,
-                "manufacturer": manufacturer,
-                "price": price,
-                "specifications": {
-                    "cores": cores,
-                    "clockSpeed": clockSpeed
-                }
-            };
-
-            // Assuming you have the existing data from data.json
-            // Fetch the existing data
-            fetch('data.json')
-                .then(response => response.json())
-                .then(existingData => {
-                    // Add the new data to the existing data array
-                    existingData.push(newData);
-
-                    // Save the updated data back to the JSON file
-                    return fetch('data.json', {
-                        method: 'PUT', // You might need to use 'POST' or 'PATCH' depending on your server setup
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(existingData)
-                    });
-                })
-                .then(response => response.json())
-                .then(updatedData => {
-                    console.log('Data added successfully:', updatedData);
-                    // Optionally, you can display a success message or redirect the user
-                })
-                .catch(error => {
-                    console.error('Error adding data:', error);
-                    // Display an error message to the user
-                });
-        }
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
