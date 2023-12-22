@@ -194,11 +194,11 @@ document.addEventListener('DOMContentLoaded', async function () {
 });
 
 /*
+* January 25, 2023
 *
-*
-*
-*
-*
+*@ reference https://dmitripavlutin.com/javascript-fetch-async-await/
+* 
+* Author  Dmitri Pavlutin
 */
 // async Fetches data from the external Json API 
 async function fetchJsonData() {
@@ -210,11 +210,11 @@ async function fetchJsonData() {
 }
 
 /*
+* January 25, 2023
 *
-*
-*
-*
-*
+*@ reference https://dmitripavlutin.com/javascript-fetch-async-await/
+* 
+* Author  Dmitri Pavlutin
 */
 // async Fetches data from the external XML API 
 async function fetchXmlData() {
