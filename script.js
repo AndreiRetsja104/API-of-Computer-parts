@@ -107,13 +107,7 @@ function displayComputerParts(parts, targetElement) {
     }
 }
 
-/*
-*
-*
-*
-*
-*
-*/
+
 //Creates HTML markup for displaying information about a computer part
 function createPartInfo(part) {
     // Create a string containing HTML markup with information about the part
@@ -144,10 +138,7 @@ function createPartInfo(part) {
 *
 *
 */
-//Performs a search based on user input and displays filtered results.
-function performSearch() {
-    fetchJsonData()
-        .then(data => {
+
             const typeInput = document.getElementById('type-input').value.trim().toLowerCase();
             const manufacturerInput = document.getElementById('manufacturer-input').value.trim().toLowerCase();
             const priceInput = document.getElementById('price-input').value.trim();
@@ -234,11 +225,11 @@ async function fetchXmlData() {
 }
 
 /*
+* NOVEMBER 24, 2021
 *
+*@ reference https://www.freecodecamp.org/news/d3js-tutorial-data-visualization-for-beginners/
 *
-*
-*
-*
+* Author  Spruce Emmanuel 
 */
 // Function for data visualization using D3.js
 function visualizeData(data) {
@@ -265,13 +256,6 @@ function visualizeData(data) {
         .attr('fill', 'blue');
 }
 
-/*
-*
-*
-*
-*
-*
-*/
 // Fetch data on page load
 document.addEventListener('DOMContentLoaded', function() {
     fetchJsonData();
