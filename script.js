@@ -3,10 +3,10 @@ const jsonApiEndpoint = 'https://raw.githubusercontent.com/AndreiRetsja104/API-o
 const xmlApiEndpoint = 'https://raw.githubusercontent.com/AndreiRetsja104/API-of-Computer-parts/main/data.xml';
 
 /*
+* Nov 25, 2023 by
 *
-*@
-*@
-*
+*@ refernece  https://developer.mozilla.org/en-US/docs/Web/API/fetch
+* Author MDN contributors
 *
 */
 // Function to fetch data from the external JSON API
@@ -22,10 +22,10 @@ function fetchJsonData() {
 }
 
 /*
+* Nov 25, 2023 by
 *
-*
-*
-*
+*@ refernece  https://developer.mozilla.org/en-US/docs/Web/API/fetch
+* Author MDN contributors
 *
 */
 // Function to fetch data from the external XML API
