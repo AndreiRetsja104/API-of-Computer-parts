@@ -73,11 +73,11 @@ function parseXmlData(xmlDoc) {
 }
 
 /*
+* Oct 5, 2023
 *
+* @ reference https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions 
 *
-*
-*
-*
+* Author MDN contributors
 */
 //  Displays computer parts information on the webpage
 function displayComputerParts(parts, targetElement) {
