@@ -2,6 +2,13 @@
 const jsonApiEndpoint = 'https://raw.githubusercontent.com/AndreiRetsja104/API-of-Computer-parts/main/data.json';
 const xmlApiEndpoint = 'https://raw.githubusercontent.com/AndreiRetsja104/API-of-Computer-parts/main/data.xml';
 
+/*
+*
+*@
+*@
+*
+*
+*/
 // Function to fetch data from the external JSON API
 function fetchJsonData() {
     fetch(jsonApiEndpoint)
@@ -14,7 +21,13 @@ function fetchJsonData() {
         .catch(error => console.error('Error fetching JSON data:', error));
 }
 
-
+/*
+*
+*
+*
+*
+*
+*/
 // Function to fetch data from the external XML API
 function fetchXmlData() {
     return fetch(xmlApiEndpoint)
@@ -33,6 +46,13 @@ function fetchXmlData() {
         });
 }
 
+/*
+*
+*
+*
+*
+*
+*/
 // Function to parse XML data
 function parseXmlData(xmlDoc) {
     const parts = [];
@@ -52,6 +72,13 @@ function parseXmlData(xmlDoc) {
     return parts;
 }
 
+/*
+*
+*
+*
+*
+*
+*/
 //  Displays computer parts information on the webpage
 function displayComputerParts(parts, targetElement) {
     const computerPartsInfo = document.querySelector(targetElement);
@@ -80,6 +107,13 @@ function displayComputerParts(parts, targetElement) {
     }
 }
 
+/*
+*
+*
+*
+*
+*
+*/
 //Creates HTML markup for displaying information about a computer part
 function createPartInfo(part) {
     // Create a string containing HTML markup with information about the part
@@ -103,7 +137,13 @@ function createPartInfo(part) {
     `;
 }
 
-
+/*
+*
+*
+*
+*
+*
+*/
 //Performs a search based on user input and displays filtered results.
 function performSearch() {
     fetchJsonData()
@@ -152,6 +192,14 @@ document.addEventListener('DOMContentLoaded', async function () {
         document.querySelector('#computer-parts-info-xml').innerHTML = 'Error fetching XML data. Please try again later.';
     }
 });
+
+/*
+*
+*
+*
+*
+*
+*/
 // async Fetches data from the external Json API 
 async function fetchJsonData() {
     const response = await fetch(jsonApiEndpoint);
@@ -160,6 +208,14 @@ async function fetchJsonData() {
     }
     return response.json();
 }
+
+/*
+*
+*
+*
+*
+*
+*/
 // async Fetches data from the external XML API 
 async function fetchXmlData() {
     try {
@@ -177,6 +233,13 @@ async function fetchXmlData() {
     }
 }
 
+/*
+*
+*
+*
+*
+*
+*/
 // Function for data visualization using D3.js
 function visualizeData(data) {
     // Example: Create a bar chart of stock levels using D3.js
@@ -202,6 +265,13 @@ function visualizeData(data) {
         .attr('fill', 'blue');
 }
 
+/*
+*
+*
+*
+*
+*
+*/
 // Fetch data on page load
 document.addEventListener('DOMContentLoaded', function() {
     fetchJsonData();
