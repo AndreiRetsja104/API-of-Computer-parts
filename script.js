@@ -47,11 +47,11 @@ function fetchXmlData() {
 }
 
 /*
+* Dec 20, 2023 
 *
+* @ reference  https://developer.mozilla.org/en-US/docs/Web/XML/Parsing_and_serializing_XML 
 *
-*
-*
-*
+* Author MDN contributors
 */
 // Function to parse XML data
 function parseXmlData(xmlDoc) {
