@@ -138,7 +138,10 @@ function createPartInfo(part) {
 *
 *
 */
-
+// Search 
+function performSearch() {
+    fetchJsonData()
+        .then(data => {
             const typeInput = document.getElementById('type-input').value.trim().toLowerCase();
             const manufacturerInput = document.getElementById('manufacturer-input').value.trim().toLowerCase();
             const priceInput = document.getElementById('price-input').value.trim();
