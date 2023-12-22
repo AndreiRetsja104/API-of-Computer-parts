@@ -131,6 +131,13 @@ function createPartInfo(part) {
     `;
 }
 
+/*
+* Oct 5, 2023
+*
+* @ reference https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions 
+*
+* Author MDN contributors
+*/
 // Function to perform a search based on user input and display filtered results
 function performSearch() {
 // Fetch JSON data from the external API
