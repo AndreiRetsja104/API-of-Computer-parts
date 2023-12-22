@@ -131,35 +131,32 @@ function createPartInfo(part) {
     `;
 }
 
-/*
-*
-*
-*
-*
-*
-*/
-// Search 
+// Function to perform a search based on user input and display filtered results
 function performSearch() {
+// Fetch JSON data from the external API
     fetchJsonData()
         .then(data => {
+	    // Get user input values
             const typeInput = document.getElementById('type-input').value.trim().toLowerCase();
             const manufacturerInput = document.getElementById('manufacturer-input').value.trim().toLowerCase();
             const priceInput = document.getElementById('price-input').value.trim();
 
-            // Extracting min and max values from the priceInput
+            // Extract min and max values from the priceInput
             const [minPrice, maxPrice] = priceInput.split('-').map(val => parseFloat(val.trim()));
-
+           
+	     // Filter data based on user input
             const filteredData = data.filter(part => {
                 const matchType = !typeInput || part.type.toLowerCase().includes(typeInput);
-                const matchManufacturer = !manufacturerInput || part.manufacturer.toLowerCase().includes(manufacturerInput);
+		    const matchManufacturer = !manufacturerInput || part.manufacturer.toLowerCase().includes(manufacturerInput);
 
                 // Check if the price is within the specified range
                 const matchPrice = isNaN(minPrice) || isNaN(maxPrice) ||
                     (minPrice <= part.price && part.price <= maxPrice);
 
+		 // Return true if all conditions are met, indicating a match    
                 return matchType && matchManufacturer && matchPrice;
             });
-
+            // Display the filtered data on the webpage
             displayComputerParts(filteredData, '#computer-parts-info-json');
         })
         .catch(error => console.error('Error performing search:', error));
